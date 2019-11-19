@@ -3,7 +3,7 @@ query ListLandTitlesForSale {
   statement:
     SELECT org.landreg.LandTitle 
       WHERE (forSale == true)
-        ORDER BY [id ASC]
+       // ORDER BY [id ASC]
 }
 
 query ListLandTitlesBySize {
@@ -11,7 +11,7 @@ query ListLandTitlesBySize {
   statement:
     SELECT org.landreg.LandTitle 
       WHERE ((area > _$minimumArea) AND (area < _$maximumArea)) 
-        ORDER BY [area ASC]
+       // ORDER BY [area ASC]
 }
 
 query ListOwnedLandTitles {
@@ -19,7 +19,7 @@ query ListOwnedLandTitles {
   statement: 
     SELECT org.landreg.LandTitle 
       WHERE (owner == _$owner) 
-        ORDER BY [id ASC]
+       // ORDER BY [id ASC]
 }
 
 query ListPreviouslyOwnedLandTitles {
@@ -27,5 +27,5 @@ query ListPreviouslyOwnedLandTitles {
   statement: 
     SELECT org.landreg.LandTitle 
       WHERE (previousOwners CONTAINS _$previousOwner) 
-        ORDER BY [id ASC]
+       // ORDER BY [id ASC]
 }
