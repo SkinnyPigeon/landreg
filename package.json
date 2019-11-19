@@ -1,0 +1,36 @@
+{
+  "engines": {
+    "composer": "^0.20.9"
+  },
+  "name": "landreg",
+  "version": "0.0.1",
+  "description": "An example Land Registry network for the Packt course on Hyperledger Fabric and Composer",
+  "scripts": {
+    "prepublish": "mkdirp ./dist && composer archive create --sourceType dir --sourceName . -a ./dist/landreg.bna",
+    "pretest": "npm run lint",
+    "lint": "eslint .",
+    "test": "nyc mocha -t 0 test/*.js && cucumber-js"
+  },
+  "keywords": [
+    "composer",
+    "composer-network"
+  ],
+  "author": "SkinnyPigeon",
+  "email": "philtheskinnypigeon@yahoo.co.uk",
+  "license": "None",
+  "devDependencies": {
+    "composer-admin": "^0.20.9",
+    "composer-cli": "^0.20.9",
+    "composer-client": "^0.20.9",
+    "composer-common": "^0.20.9",
+    "composer-connector-embedded": "^0.20.9",
+    "composer-cucumber-steps": "^0.20.9",
+    "chai": "latest",
+    "chai-as-promised": "latest",
+    "cucumber": "^2.2.0",
+    "eslint": "latest",
+    "nyc": "latest",
+    "mkdirp": "latest",
+    "mocha": "latest"
+  }
+}
