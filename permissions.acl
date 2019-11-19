@@ -1,16 +1,40 @@
-/*
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+rule ParticipantCanUpdateSelf {
+  description: "Participants can update their own data"
+  participant(p): "org.hyperledger.composer.system.Participant"
+  operation: UPDATE
+  resource(r): "org.hyperledger.composer.system.Participant"
+  transaction(tx): "org.landreg.UnlockLandTitle"
+  condition: (r.getIdentifier() == p.getIdentifier())
+  action: ALLOW
+}
+
+rule LandTitleOwnerCanUnlock {
+  description: "Current owner of landTitle can unlock it to be on sale"
+  participant(p): "org.landreg.Individual"
+  operation: UPDATE
+  resource(r): "org.landreg.landTitle"
+  transaction(tx): "org.landreg.UnlockLandTitle"
+  condition: (r.owner.getIdentifier() == p.getIdentifier())
+  action: ALLOW
+}
+
+rule LandTitleOwnerCanTransfer {
+  description: "Current owner of landTitle can transfer it to another individual"
+  participant(p): "org.landreg.Individual"
+  operation: UPDATE
+  resource(r): "org.landreg.landTitle"
+  transaction(tx): "org.landreg.TransferLandTitle"
+  condition: (r.owner.getIdentifier() == p.getIdentifier())
+  action: ALLOW
+}
+
+rule EveryoneCanSeeResources {
+  description: "Everyone can read all resources in the org.landreg namespace"
+  participant: "ANY"
+  operation: READ 
+  resource: "org.landreg.*"
+  action: ALLOW
+}
 
 rule NetworkAdminUser {
     description: "Grant business network administrators full access to user resources"
