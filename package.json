@@ -3,7 +3,7 @@
     "composer": "^0.20.9"
   },
   "name": "landreg",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "An example Land Registry network for the Packt course on Hyperledger Fabric and Composer",
   "scripts": {
     "prepublish": "mkdirp ./dist && composer archive create --sourceType dir --sourceName . -a ./dist/landreg.bna",
