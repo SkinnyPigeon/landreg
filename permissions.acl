@@ -12,7 +12,7 @@ rule LandTitleOwnerCanUnlock {
   description: "Current owner of landTitle can unlock it to be on sale"
   participant(p): "org.landreg.Individual"
   operation: UPDATE
-  resource(r): "org.landreg.landTitle"
+  resource(r): "org.landreg.LandTitle"
   transaction(tx): "org.landreg.UnlockLandTitle"
   condition: (r.owner.getIdentifier() == p.getIdentifier())
   action: ALLOW
@@ -22,7 +22,7 @@ rule LandTitleOwnerCanTransfer {
   description: "Current owner of landTitle can transfer it to another individual"
   participant(p): "org.landreg.Individual"
   operation: UPDATE
-  resource(r): "org.landreg.landTitle"
+  resource(r): "org.landreg.LandTitle"
   transaction(tx): "org.landreg.TransferLandTitle"
   condition: (r.owner.getIdentifier() == p.getIdentifier())
   action: ALLOW
