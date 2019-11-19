@@ -33,3 +33,8 @@ asset LandTitle identified by id {
 transaction UnlockLandTitle {
   --> LandTitle landTitle
 }
+
+transaction TransferLandTitle {
+  --> LandTitle landTitle
+  --> Individual newOwner
+}
